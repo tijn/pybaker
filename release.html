@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+  <title>builder.py</title>
+</head>
+<body>
+<h1>builder.py</h1>
+
+<p>Anonymous blocks are of course insanely cool.<br/>
+Why explains it better in this short film:
+<embed http://www.youtube.com/watch?v=mXZ_htL1rOI>
+</p>
+
+<p>So what are we going to use it for? For making a builder (***link***) clone of course! Since what the world needs is yet another templating language. The usage of this library is different from the original Ruby Builder; since Python has no #method_missing you need to explicitly call the element (or tag) method.</p>
+
+<pre>
+    head = Element("head")
+    with head as h:
+        with h.tag("title") as t: t.text("builder.py")
+
+    foo = XmlDocument("html", doctype='&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"&gt;', attributes={ 'xmlns':"http://www.w3.org/1999/xhtml", 'lang':"en", 'xml:lang':"en"})
+    foo.contents.append(head)
+    with foo as f:
+        with foo.tag("body") as body:
+            with body.tag("p") as p:
+                p.text("blah blah &amp; yadda yadda")
+                p.comment("replace with praise for builder.py")
+                p.tag("br")
+                p.text("that's all!")
+</pre>
+</body>
+</html>
