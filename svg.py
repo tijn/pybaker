@@ -1,6 +1,6 @@
 #!/usr/bin/env python2.5
 
-from builder import *
+from baker import *
 
 #<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 class SvgDocument(XmlDocument):
