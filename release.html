@@ -1,33 +1,56 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>builder.py</title>
+  <title>pybaker</title>
+  <link rel="stylesheet" type="text/css" href="/style/minimal.css" />
+  <meta name="author" content="Tijn Schuurmans"/>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 </head>
 <body>
-<h1>builder.py</h1>
+<div id="main"><div class="wrapper">
+  <h1>pybaker</h1>
+  <p>pybaker is a <a href="http://builder.rubyforge.org/">Builder</a> clone for generating XML.</p>
 
-<p>Anonymous blocks are of course insanely cool.<br/>
-Why explains it better in this short film:
-<embed http://www.youtube.com/watch?v=mXZ_htL1rOI>
-</p>
+  <h2>introduction</h2>
+  <p>Anonymous blocks are of course insanely cool. <a href="http://whytheluckystiff.net/">whytheluckystiff</a> explains it better in this short film:<br/>
+  <object type="application/x-shockwave-flash" data="http://www.youtube.com/v/mXZ_htL1rOI" width="425" height="344"><param name="movie" value="http://www.youtube.com/v/mXZ_htL1rOI" /></object><br/>
+  So what are we going to use it for? For making a <a href="http://builder.rubyforge.org/">Builder</a> clone of course! Since what the world needs is yet another templating language...</p>
 
-<p>So what are we going to use it for? For making a builder (***link***) clone of course! Since what the world needs is yet another templating language. The usage of this library is different from the original Ruby Builder; since Python has no #method_missing you need to explicitly call the element (or tag) method.</p>
+  <p>The usage of this library is different from the original Ruby Builder; since Python has no #method_missing (that I know of) you need to explicitly call the element method... or use the equivalent tag method which is not really correctly named but much shorter to type.</p>
 
-<pre>
-    head = Element("head")
-    with head as h:
-        with h.tag("title") as t: t.text("builder.py")
+  <h2>example code</h2>
+  <p>This code:</p>
+  <pre>
+  head = Element("head")
+  with head as h:
+      with h.tag("title") as t: t.text("pybaker")
 
-    foo = XmlDocument("html", doctype='&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"&gt;', attributes={ 'xmlns':"http://www.w3.org/1999/xhtml", 'lang':"en", 'xml:lang':"en"})
-    foo.contents.append(head)
-    with foo as f:
-        with foo.tag("body") as body:
-            with body.tag("p") as p:
-                p.text("blah blah &amp; yadda yadda")
-                p.comment("replace with praise for builder.py")
-                p.tag("br")
-                p.text("that's all!")
-</pre>
+  foo = XmlDocument("html", doctype='&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"&gt;', attributes={ 'xmlns':"http://www.w3.org/1999/xhtml", 'lang':"en", 'xml:lang':"en"})
+  foo.contents.append(head)
+  with foo as f:
+      with foo.tag("body") as body:
+          with body.tag("p") as p:
+              p.text("blah blah &amp; yadda yadda")
+              p.comment("replace with praise for baker.py")
+              p.tag("br")
+              p.text("that's all!")
+  </pre>
+
+  <p>... will produce something like this: (I put in a few line endings.)</p>
+
+  <pre>
+  &lt;?xml version="1.0" encoding="UTF-8"?&gt;
+  &lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"&gt;
+  &lt;html lang="en" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"&gt;
+  &lt;head&gt;&lt;title&gt;builder.py&lt;/title&gt;&lt;/head&gt;
+  &lt;body&gt;
+    &lt;p&gt;blah blah &amp;amp; yadda yadda&lt;!-- replace with praise for builder.py --&gt;&lt;br /&gt;that's all!&lt;/p&gt;
+  &lt;/body&gt;&lt;/html&gt;
+  </pre>
+</div></div>
+<div id="footer"><div class="wrapper">
+  <p style="text-align: center">Copyright 2009 - Tijn Schuurmans</p>
+</div></div>
 </body>
 </html>
