@@ -1,4 +1,5 @@
-= TODO =
+# TODO
+
 * output to stringio instead of string for speed
 * beatify output with indentation
 * special mode to generate xml that internet explorer can read (spaces in tags before slash)
